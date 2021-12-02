@@ -1,5 +1,9 @@
 package com.example.springtemplate.product_orders;
 
+import com.example.springtemplate.orders.Order;
+import com.example.springtemplate.products.Product;
+import com.example.springtemplate.users.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +15,20 @@ public class ProductOrder {
   private Integer quantity;
   private Integer productId;
   private Integer orderId;
+
+  @ManyToOne
+  private Order containedIn;
+
+  @ManyToOne
+  private Product productType;
+
+  public Product getProductType() { return productType; }
+
+  public void setProductType(Product productType) { this.productType = productType; }
+
+  public Order getContainedIn() { return containedIn; }
+
+  public void setContainedIn(Order containedIn) { this.containedIn = containedIn; }
 
   public Integer getId() {
     return id;
