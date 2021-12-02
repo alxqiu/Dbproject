@@ -18,7 +18,7 @@ public class User {
     private String lastName;
     private String username;
     private String password;
-    private Role role;
+    private String role;
     private String email;
     private Date dateOfBirth;
 
@@ -39,19 +39,21 @@ public class User {
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-    public Role getRole() { return role; }
-    public void setRole(Role role) { this.role = role; }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public Date getDateOfBirth() { return dateOfBirth; }
     public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
-    public User(String username, String password, String first_name, String last_name, Role role) {
+    public User(String username, String password, String first_name, String last_name, String role) {
         this.username = username;
         this.password = password;
         this.firstName = first_name;
         this.lastName = last_name;
         this.role = role;
+        this.email = "abc@mail.com";
+        this.dateOfBirth = new Date(1);
     }
 
     public User() {}

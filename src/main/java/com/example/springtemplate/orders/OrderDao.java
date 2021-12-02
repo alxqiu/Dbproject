@@ -1,11 +1,13 @@
 package com.example.springtemplate.orders;
 
+import com.example.springtemplate.users.User;
 import com.example.springtemplate.users.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,7 +20,19 @@ public class OrderDao {
   @Autowired
   OrderRepository orderRepository;
 
-  @GetMapping("orm/orders/{orderId}")
+  @GetMapping("/orm/orders/create/{cId}")
+  public Order createOrder(
+          @PathVariable("cId") Integer customerId) {
+    Order order = new Order(customerId);
+    return orderRepository.save(order);
+  }
+
+  @GetMapping("/orm/orders/find")
+  public List<Order> findAllOrders() {
+    return (List<Order>) orderRepository.findAll();
+  }
+
+  @GetMapping("orm/orders/find/id/{orderId}")
   public Order findOrderById(
           @PathVariable("orderId") Integer orderId) {
     return orderRepository.findById(orderId).get();
@@ -28,6 +42,21 @@ public class OrderDao {
   public List<Order> findOrdersByUser(
           @PathVariable("userId") Integer userId) {
     return userRepository.findById(userId).get().getOrders();
+  }
+
+  @GetMapping("/orm/orders/delete/{orderId}")
+  public void deleteOrder(
+          @PathVariable("orderId") Integer id) {
+    orderRepository.deleteById(id);
+  }
+
+  @GetMapping("/orm/orders/update/{orderId}/{userId}")
+  public Order updateOrder(
+          @PathVariable("orderId") Integer id,
+          @PathVariable("userId") Integer userId) {
+    Order order = orderRepository.findById(id).get();
+    order.setCustomerId(userId);
+    return orderRepository.save(order);
   }
 }
 

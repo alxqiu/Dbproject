@@ -10,15 +10,18 @@ public class UserDao {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/orm/users/create/{fn}/{ln}/{un}/{pw}")
+    @GetMapping("/orm/users/create/{fn}/{ln}/{un}/{pw}/{rl}")
     public User createUser(
             @PathVariable("fn") String first,
             @PathVariable("ln") String last,
             @PathVariable("un") String uname,
-            @PathVariable("pw") String pass) {
-        User user = new User(first, last, uname, pass, null);
+            @PathVariable("pw") String pass,
+            @PathVariable("rl") String role) {
+        User user = new User(first, last, uname, pass, role);
         return userRepository.save(user);
     }
+//    @PostMapping("/orm/users")
+//    public User createUser(@RequestBody User user) { return userRepository.save(user); }
 
 
     @GetMapping("/orm/users/find")

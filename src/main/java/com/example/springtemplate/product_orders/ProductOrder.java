@@ -2,7 +2,6 @@ package com.example.springtemplate.product_orders;
 
 import com.example.springtemplate.orders.Order;
 import com.example.springtemplate.products.Product;
-import com.example.springtemplate.users.User;
 
 import javax.persistence.*;
 
@@ -13,8 +12,8 @@ public class ProductOrder {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private Integer quantity;
-  private Integer productId;
   private Integer orderId;
+  private Integer productId;
 
   @ManyToOne
   private Order containedIn;
@@ -54,11 +53,10 @@ public class ProductOrder {
 
   public void setOrderId(Integer orderId) { this.orderId = orderId; }
 
-  public ProductOrder(Integer id, Integer quantity, Integer productId, Integer orderId) {
-    this.id = id;
+  public ProductOrder(Integer quantity, Integer orderId, Integer productId) {
     this.quantity = quantity;
-    this.productId = productId;
     this.orderId = orderId;
+    this.productId = productId;
   }
 
   public ProductOrder() {}

@@ -46,8 +46,7 @@ public class Order {
     this.customerId = customerId;
   }
 
-  public Order(Integer id, Integer customerId) {
-    this.id = id;
+  public Order(Integer customerId) {
     this.customerId = customerId;
   }
 
