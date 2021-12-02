@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+// Git Test
+
 @Entity
 @Table(name="users")
 public class User {
