@@ -1,5 +1,6 @@
 package com.example.springtemplate.orders;
 
+import com.example.springtemplate.product_orders.ProductOrder;
 import com.example.springtemplate.users.User;
 import com.example.springtemplate.users.UserRepository;
 
@@ -20,10 +21,19 @@ public class OrderDao {
   @Autowired
   OrderRepository orderRepository;
 
-  @GetMapping("/orm/orders/create/{cId}")
+  @GetMapping("/orm/orders/create/{userId}")
   public Order createOrder(
-          @PathVariable("cId") Integer customerId) {
-    Order order = new Order(customerId);
+          @PathVariable("userId") Integer userId) {
+    Order order = new Order(userId);
+
+    // Adding newly created order to user's list
+    User user = userRepository.findById(userId).get();
+    order.setOrderedBy(user);
+    List<Order> orders = user.getOrders();
+    orders.add(order);
+    user.setOrders(orders);
+    userRepository.save(user);
+
     return orderRepository.save(order);
   }
 

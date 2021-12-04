@@ -1,6 +1,8 @@
 package com.example.springtemplate.product_orders;
 
+import com.example.springtemplate.orders.Order;
 import com.example.springtemplate.orders.OrderRepository;
+import com.example.springtemplate.products.Product;
 import com.example.springtemplate.products.ProductRepository;
 import com.example.springtemplate.users.User;
 
@@ -29,6 +31,23 @@ public class ProductOrderDao {
           @PathVariable("oId") Integer orderId,
           @PathVariable("pId") Integer productId) {
     ProductOrder productOrder = new ProductOrder(quantity, orderId, productId);
+
+    // Adding newly created product order to order's list
+    Order order = orderRepository.findById(orderId).get();
+    productOrder.setContainedIn(order);
+    List<ProductOrder> productOrders = order.getProductOrders();
+    productOrders.add(productOrder);
+    order.setProductOrders(productOrders);
+    orderRepository.save(order);
+
+    // Adding newly created product order to product's list
+    Product product = productRepository.findById(productId).get();
+    productOrder.setProductType(product);
+    productOrders = product.getProductOrders();
+    productOrders.add(productOrder);
+    product.setProductOrders(productOrders);
+    productRepository.save(product);
+
     return productOrderRepository.save(productOrder);
   }
 

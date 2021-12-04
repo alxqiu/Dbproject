@@ -22,6 +22,9 @@ public class User {
     private String email;
     private Date dateOfBirth;
 
+//    @Transient
+//    private String[] possibleRoles = new String[] {"customer", "employee", "manager"};
+
     @OneToMany(mappedBy = "orderedBy")
     @JsonIgnore
     private List<Order> orders;
