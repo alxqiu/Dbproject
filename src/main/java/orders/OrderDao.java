@@ -1,11 +1,13 @@
 package main.java.orders;
 
+import main.java.users.User;
 import main.java.users.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,10 +20,19 @@ public class OrderDao {
   @Autowired
   OrderRepository orderRepository;
 
-  @GetMapping("/orm/orders/create/{cId}")
+  @GetMapping("/orm/orders/create/{userId}")
   public Order createOrder(
-          @PathVariable("cId") Integer customerId) {
-    Order order = new Order(customerId);
+          @PathVariable("userId") Integer userId) {
+    Order order = new Order(userId);
+
+    // Adding newly created order to user's list
+    User user = userRepository.findById(userId).get();
+    order.setOrderedBy(user);
+    List<Order> orders = user.getOrders();
+    orders.add(order);
+    user.setOrders(orders);
+    userRepository.save(user);
+
     return orderRepository.save(order);
   }
 

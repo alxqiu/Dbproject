@@ -1,5 +1,6 @@
 package main.java.users;
 
+
 import main.java.Role;
 import main.java.orders.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,6 +23,9 @@ public class User {
     private String role;
     private String email;
     private Date dateOfBirth;
+
+//    @Transient
+//    private String[] possibleRoles = new String[] {"customer", "employee", "manager"};
 
     @OneToMany(mappedBy = "orderedBy")
     @JsonIgnore

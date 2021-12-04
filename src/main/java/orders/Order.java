@@ -17,6 +17,7 @@ public class Order {
   private Integer customerId;
 
   @ManyToOne
+//  @JsonIgnore
   private User orderedBy;
 
   @OneToMany(mappedBy = "containedIn")

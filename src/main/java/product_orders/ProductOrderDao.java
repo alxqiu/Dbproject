@@ -1,6 +1,8 @@
 package main.java.product_orders;
 
+import main.java.orders.Order;
 import main.java.orders.OrderRepository;
+import main.java.products.Product;
 import main.java.products.ProductRepository;
 import main.java.users.User;
 
@@ -29,6 +31,23 @@ public class ProductOrderDao {
           @PathVariable("oId") Integer orderId,
           @PathVariable("pId") Integer productId) {
     ProductOrder productOrder = new ProductOrder(quantity, orderId, productId);
+
+    // Adding newly created product order to order's list
+    Order order = orderRepository.findById(orderId).get();
+    productOrder.setContainedIn(order);
+    List<ProductOrder> productOrders = order.getProductOrders();
+    productOrders.add(productOrder);
+    order.setProductOrders(productOrders);
+    orderRepository.save(order);
+
+    // Adding newly created product order to product's list
+    Product product = productRepository.findById(productId).get();
+    productOrder.setProductType(product);
+    productOrders = product.getProductOrders();
+    productOrders.add(productOrder);
+    product.setProductOrders(productOrders);
+    productRepository.save(product);
+
     return productOrderRepository.save(productOrder);
   }
 
