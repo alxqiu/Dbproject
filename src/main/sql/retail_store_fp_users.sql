@@ -1,13 +1,15 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `retail_store_fp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `retail_store_fp`;
+-- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
 --
--- Host: 127.0.0.1    Database: db_design
+-- Host: localhost    Database: retail_store_fp
 -- ------------------------------------------------------
--- Server version	5.7.19
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,17 +23,22 @@
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `profile_picture` varchar(45) DEFAULT NULL,
-  `handle` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `role` varchar(10) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `users_to_role_idx` (`role`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +47,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Alice','Wonderland','alice',NULL,NULL,NULL),(2,'Bob','Hope','bob',NULL,NULL,NULL),(3,'Tim','Dod','erdayastronaut','qwer1234',NULL,'Everyday Astronaut'),(4,'Elon','Musk','elonmusk','ewq321',NULL,'Elon Musk'),(5,'Charlie','Brown','charlie','p@ssw0rd',NULL,NULL),(6,'Daniel','Craig','dan','p@007rd',NULL,NULL);
+INSERT INTO `users` VALUES (2,'Barack','Obama','barryO','pres44','EMPLOYEE','president@whitehouse.gov','1961-08-04','2021-11-25 22:49:13','2021-11-25 22:49:13'),(3,'Glenn','Seaborg','ProtonPower','element106','MANAGER','seaborgg@doe.gov','1912-04-19','2021-11-25 22:49:13','2021-11-25 22:49:13'),(4,'Grace','Hopper','graphtraveller','cs4life','EMPLOYEE','hopperg@navy.gov','1906-12-09','2021-11-25 22:49:13','2021-11-25 22:49:13'),(5,'Giorno','Giovanna','gexperience','haveadream','CUSTOMER','giovannag@passione.com','1985-03-01','2021-11-25 22:49:13','2021-11-25 22:49:13');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-13 22:42:23
+-- Dump completed on 2021-12-03 10:04:17
