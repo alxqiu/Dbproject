@@ -49,7 +49,7 @@ public class User {
     public Date getDateOfBirth() { return dateOfBirth; }
     public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
-    public User(String username, String password, String first_name, String last_name, String role) {
+    public User(String first_name, String last_name, String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.firstName = first_name;
