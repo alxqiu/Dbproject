@@ -2,6 +2,8 @@ package com.example.springtemplate.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -10,14 +12,17 @@ public class UserDao {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/orm/users/create/{fn}/{ln}/{un}/{pw}/{rl}")
+    @GetMapping("/orm/users/create/{fn}/{ln}/{un}/{pw}/{rl}/{em}/{dob}")
     public User createUser(
             @PathVariable("fn") String first,
             @PathVariable("ln") String last,
             @PathVariable("un") String uname,
             @PathVariable("pw") String pass,
-            @PathVariable("rl") String role) {
-        User user = new User(first, last, uname, pass, role);
+            @PathVariable("rl") String role,
+            @PathVariable("em") String email,
+            @PathVariable("dob") Date dateofbirth) {
+        User user = new User(first, last, uname, pass, role, email);
+        user.setDateOfBirth(dateofbirth);
         return userRepository.save(user);
     }
 //    @PostMapping("/orm/users")
@@ -41,12 +46,18 @@ public class UserDao {
         userRepository.deleteById(id);
     }
 
-    @GetMapping("/orm/users/update/{userId}/{password}")
+    @GetMapping("/orm/users/update/{userId}")
     public User updateUser(
             @PathVariable("userId") Integer id,
-            @PathVariable("password") String newPass) {
+            @RequestBody User userUpdates) {
         User user = userRepository.findById(id).get();
-        user.setPassword(newPass);
+        user.setFirstName(userUpdates.getFirstName());
+        user.setLastName(userUpdates.getLastName());
+        user.setUsername(userUpdates.getUsername());
+        user.setPassword(userUpdates.getPassword());
+        user.setRole(userUpdates.getRole());
+        user.setEmail(userUpdates.getEmail());
+        user.setDateOfBirth(userUpdates.getDateOfBirth());
         return userRepository.save(user);
     }
 

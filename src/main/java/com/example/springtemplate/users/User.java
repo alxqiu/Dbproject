@@ -4,6 +4,7 @@ import com.example.springtemplate.orders.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
@@ -49,13 +50,16 @@ public class User {
     public Date getDateOfBirth() { return dateOfBirth; }
     public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
-    public User(String first_name, String last_name, String username, String password, String role) {
+    public User(String first_name, String last_name, String username, String password,
+                String role, String email) {
         this.username = username;
         this.password = password;
         this.firstName = first_name;
         this.lastName = last_name;
+        // enforce that roles be in enum
         this.role = role;
-        this.email = "abc@mail.com";
+        // enforce that emails are in correct format
+        this.email = email;
         this.dateOfBirth = new Date(1);
     }
 
