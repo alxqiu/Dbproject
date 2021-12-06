@@ -31,10 +31,7 @@ public class UserDao {
         return userRepository.save(user);
     }
 
-//    @PostMapping("/orm/users")
-//    public User createUser(@RequestBody User user) { return userRepository.save(user); }
-
-
+    
     @GetMapping("/orm/users/find")
     public List<User> findAllUsers() {
         return (List<User>) userRepository.findAll();
