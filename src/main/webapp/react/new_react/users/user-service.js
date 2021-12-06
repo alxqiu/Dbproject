@@ -15,9 +15,7 @@ export const findUserById = (id) => {
 
 // TODO: delete a user by their ID
 export const deleteUser = (id) => {
-    return fetch(`${USERS_URL}/delete/${id}`, {
-        method: "DELETE"
-    })
+    return fetch(`${USERS_URL}/delete/${id}`)
 }
 
 // TODO: create a new user
