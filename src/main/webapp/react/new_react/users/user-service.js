@@ -1,29 +1,28 @@
 // TODO: declare URL where server listens for HTTP requests
-const USERS_URL = "http://localhost:8080/orm/users/find"
+const USERS_URL = "http://localhost:8080/orm/users"
 
 // TODO: retrieve all users from the server
 export const findAllUsers = () => {
-    return fetch(USERS_URL).then(response => response.json())
+    return fetch(USERS_URL +"/find").then(response => response.json())
 }
 
 
 // TODO: retrieve a single user by their ID
 export const findUserById = (id) => {
-    return fetch(`${USERS_URL}/${id}`)
+    return fetch(`${USERS_URL}/find/${id}`)
         .then(response => response.json())
 }
 
 // TODO: delete a user by their ID
 export const deleteUser = (id) => {
-    return fetch(`${USERS_URL}/${id}`, {
+    return fetch(`${USERS_URL}/delete/${id}`, {
         method: "DELETE"
     })
 }
 
 // TODO: create a new user
 export const createUser = (user) => {
-
-    return fetch('${USERS_URL}/create',{
+    return fetch(`${USERS_URL}/create/$`,{
         method: 'POST',
         body: JSON.stringify(user),
         headers: {'content-type': 'application/json'}
