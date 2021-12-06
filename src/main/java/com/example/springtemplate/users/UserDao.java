@@ -34,7 +34,7 @@ public class UserDao {
         return (List<User>) userRepository.findAll();
     }
 
-    @GetMapping("/orm/users/find/id/{userId}")
+    @GetMapping("/orm/users/find/{userId}")
     public User findUserById(
             @PathVariable("userId") Integer id) {
         return userRepository.findById(id).get();
