@@ -15,7 +15,7 @@ const UserList = () => {
         <div>
             <h2>User List</h2>
             <button className="btn btn-primary"
-                    onClick={() => history.push("/users/new")}>
+                    onClick={() => history.push("/users/create")}>
                 Add User
             </button>
             <ul className="list-group">

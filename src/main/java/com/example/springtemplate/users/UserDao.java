@@ -12,19 +12,25 @@ public class UserDao {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/orm/users/create/{fn}/{ln}/{un}/{pw}/{rl}/{em}/{dob}")
-    public User createUser(
-            @PathVariable("fn") String first,
-            @PathVariable("ln") String last,
-            @PathVariable("un") String uname,
-            @PathVariable("pw") String pass,
-            @PathVariable("rl") String role,
-            @PathVariable("em") String email,
-            @PathVariable("dob") Date dateofbirth) {
-        User user = new User(first, last, uname, pass, role, email);
-        user.setDateOfBirth(dateofbirth);
+//    @GetMapping("/orm/users/create/{fn}/{ln}/{un}/{pw}/{rl}/{em}/{dob}")
+//    public User createUser(
+//            @PathVariable("fn") String first,
+//            @PathVariable("ln") String last,
+//            @PathVariable("un") String uname,
+//            @PathVariable("pw") String pass,
+//            @PathVariable("rl") String role,
+//            @PathVariable("em") String email,
+//            @PathVariable("dob") Date dateofbirth) {
+//        User user = new User(first, last, uname, pass, role, email);
+//        user.setDateOfBirth(dateofbirth);
+//        return userRepository.save(user);
+//    }
+
+    @PostMapping("/orm/users/create")
+    public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
+
 //    @PostMapping("/orm/users")
 //    public User createUser(@RequestBody User user) { return userRepository.save(user); }
 
