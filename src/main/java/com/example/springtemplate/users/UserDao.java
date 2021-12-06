@@ -46,24 +46,18 @@ public class UserDao {
         userRepository.deleteById(id);
     }
 
-    @GetMapping("/orm/users/update/{userId}/{fn}/{ln}/{un}/{pw}/{rl}/{em}/{dob}")
+    @PutMapping("/orm/users/{userId}")
     public User updateUser(
             @PathVariable("userId") Integer id,
-            @PathVariable("fn") String first,
-            @PathVariable("ln") String last,
-            @PathVariable("un") String uname,
-            @PathVariable("pw") String pass,
-            @PathVariable("rl") String role,
-            @PathVariable("em") String email,
-            @PathVariable("dob") Date dateofbirth) {
+            @RequestBody User userUpdates) {
         User user = userRepository.findById(id).get();
-        user.setFirstName(first);
-        user.setLastName(last);
-        user.setUsername(uname);
-        user.setPassword(pass);
-        user.setRole(role);
-        user.setEmail(email);
-        user.setDateOfBirth(dateofbirth);
+        user.setFirstName(userUpdates.getFirstName());
+        user.setLastName(userUpdates.getLastName());
+        user.setUsername(userUpdates.getUsername());
+        user.setPassword(userUpdates.getPassword());
+        user.setRole(userUpdates.getRole());
+        user.setEmail(userUpdates.getEmail());
+        user.setDateOfBirth(userUpdates.getDateOfBirth());
         return userRepository.save(user);
     }
 }
