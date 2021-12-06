@@ -15,12 +15,14 @@ export const findUserById = (id) => {
 
 // TODO: delete a user by their ID
 export const deleteUser = (id) => {
-    return fetch(`${USERS_URL}/delete/${id}`)
+    return fetch(`${USERS_URL}/delete/${id}`, {
+        method: "DELETE"
+    })
 }
 
 // TODO: create a new user
 export const createUser = (user) => {
-    return fetch(`${USERS_URL}/create/$`,{
+    return fetch(USERS_URL + "/create",{
         method: 'POST',
         body: JSON.stringify(user),
         headers: {'content-type': 'application/json'}
