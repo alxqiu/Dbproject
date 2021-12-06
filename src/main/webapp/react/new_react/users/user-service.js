@@ -1,9 +1,9 @@
 // TODO: declare URL where server listens for HTTP requests
-const USERS_URL = "http://localhost:8080/orm/users"
+const USERS_URL = "http://localhost:8080/orm/users/find"
 
 // TODO: retrieve all users from the server
 export const findAllUsers = () => {
-    return fetch(USERS_URL + "/find").then(response => response.json())
+    return fetch(USERS_URL).then(response => response.json())
 }
 
 
