@@ -60,12 +60,12 @@ public class OrderDao {
         orderRepository.deleteById(id);
     }
 
-    @PutMapping("/orm/orders/update/{orderId}/{userId}")
+    @PutMapping("/orm/orders/{orderId}")
     public Order updateOrder(
             @PathVariable("orderId") Integer id,
-            @PathVariable("userId") Integer userId) {
+            @RequestBody Order orderUpdates) {
         Order order = orderRepository.findById(id).get();
-        order.setCustomerId(userId);
+        order.setCustomerId(orderUpdates.getCustomerId());
         return orderRepository.save(order);
     }
 }
