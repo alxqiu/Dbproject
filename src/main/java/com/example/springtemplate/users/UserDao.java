@@ -18,6 +18,7 @@ public class UserDao {
         return userRepository.save(user);
     }
 
+
     @GetMapping("/orm/users/find")
     public List<User> findAllUsers() {
         return (List<User>) userRepository.findAll();
