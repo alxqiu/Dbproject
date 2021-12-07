@@ -24,9 +24,16 @@ const OrderList = () => {
                     orders.map(order =>
                         <li className="list-group-item"
                             key={order.id}>
+
+                            <text>
+                                {"ID: "}
+                            </text>
                             <Link to={`/orders/find/${order.id}`}>
                                 {order.id}
                             </Link>
+                            <text>
+                                {" Customer: "}{order.customerId}
+                            </text>
                         </li>)
                 }
             </ul>

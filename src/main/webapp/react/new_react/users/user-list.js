@@ -23,11 +23,17 @@ const UserList = () => {
                     users.map(user =>
                         <li className="list-group-item"
                             key={user.id}>
+                            <text>
+                                {"ID: "}
+                            </text>
                             <Link to={`/users/find/${user.id}`}>
-                                {user.firstName},
-                                {user.lastName},
-                                {user.username}
+                                {user.id}
                             </Link>
+                            <text>
+                                {" Name: "}{user.firstName}{" "}{user.lastName}{", Username: "}
+                                {user.username}
+                            </text>
+
                         </li>)
                 }
             </ul>
