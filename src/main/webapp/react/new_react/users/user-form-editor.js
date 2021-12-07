@@ -51,7 +51,7 @@ const UserFormEditor = () => {
                 <input type="radio"
                        name="role"
                        value={user.role}
-                    // checked={this.state.selectedOption === "CUSTOMER"}
+                       defaultChecked checked = {user.role === "CUSTOMER"}
                        onChange={() => setUser(user =>
                                                    ({...user, role: "CUSTOMER"}))}/>
                 Customer <br/>
@@ -59,7 +59,7 @@ const UserFormEditor = () => {
                 <input type="radio"
                        name="role"
                        value={user.role}
-                    // checked={this.state.selectedOption === "EMPLOYEE"}
+                       defaultChecked checked = {user.role === "EMPLOYEE"}
                        onChange={() => setUser(user =>
                                                    ({...user, role: "EMPLOYEE"}))}/>
                 Employee <br/>
@@ -67,7 +67,7 @@ const UserFormEditor = () => {
                 <input type="radio"
                        name="role"
                        value={user.role}
-                    // checked={this.state.selectedOption === "MANAGER"}
+                       defaultChecked checked = {user.role === "MANAGER"}
                        onChange={() => setUser(user =>
                                                    ({...user, role: "MANAGER"}))}/>
                 Manager
