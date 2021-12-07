@@ -2,11 +2,13 @@ import UserList from "./users/user-list";
 import UserFormEditor from "./users/user-form-editor";
 import OrderList from "./orders/order-list";
 import OrderFormEditor from "./orders/order-form-editor";
+import ProductList from "./products/product-list";
+import ProductFormEditor from "./products/product-form-editor";
 
 const {HashRouter, Route} = window.ReactRouterDOM;
 const App = () => {
     return (
-        <div className="both-lists">
+        <div className="lists">
 
             <div className="container-fluid">
                 <HashRouter>
@@ -30,6 +32,19 @@ const App = () => {
                 </HashRouter>
 
             </div>
+
+            <div className="container-fluid">
+                <HashRouter>
+                    <Route path={["/products", "/"]} exact={true}>
+                        <ProductList/>
+                    </Route>
+                    <Route path="/products/find/:id" exact={true}>
+                        <ProductFormEditor/>
+                    </Route>
+                </HashRouter>
+
+            </div>
+
         </div>
     );
 }

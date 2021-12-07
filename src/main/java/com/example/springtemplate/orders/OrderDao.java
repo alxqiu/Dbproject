@@ -19,7 +19,7 @@ public class OrderDao {
 
     @PostMapping("/orm/orders/create")
     public Order createOrder(@RequestBody Order order) {
-        userRepository.findById(order.getCustomerId()).get().getOrders().add(order);
+        // userRepository.findById(order.getCustomerId()).get().getOrders().add(order);
         return orderRepository.save(order);
     }
 

@@ -12,12 +12,10 @@ public class UserDao {
     @Autowired
     UserRepository userRepository;
 
-
     @PostMapping("/orm/users/create")
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
-
 
     @GetMapping("/orm/users/find")
     public List<User> findAllUsers() {
