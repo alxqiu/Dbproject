@@ -1,8 +1,8 @@
-import userService from "./user-service"
+import userService from "./order-service"
 
 const {useState, useEffect} = React;
 const {useParams} = window.ReactRouterDOM;
-const UserFormEditor = () => {
+const OrderFormEditor = () => {
     const {id} = useParams()
     const [user, setUser] = useState({})
     useEffect(() => {
@@ -46,21 +46,6 @@ const UserFormEditor = () => {
                 setUser(user =>
                     ({...user, password: e.target.value}))}
                    value={user.password}/><br/>
-            <label>Role</label>
-            <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, role: e.target.value}))}
-                   value={user.role}/><br/>
-            <label>Email</label>
-            <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, email: e.target.value}))}
-                   value={user.email}/><br/>
-            <label>Birthday</label>
-            <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, dateOfBirth: e.target.value}))}
-                   value={user.dateOfBirth}/><br/>
             <button className="btn btn-dark"
                     onClick={() => {
                         history.back()
@@ -83,4 +68,4 @@ const UserFormEditor = () => {
     )
 }
 
-export default UserFormEditor
+export default OrderFormEditor
