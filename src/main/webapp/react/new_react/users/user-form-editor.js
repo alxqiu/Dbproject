@@ -29,37 +29,59 @@ const UserFormEditor = () => {
             <label>First Name</label>
             <input onChange={(e) =>
                 setUser(user =>
-                    ({...user, firstName: e.target.value}))}
+                            ({...user, firstName: e.target.value}))}
                    value={user.firstName}/><br/>
             <label>Last Name</label>
             <input onChange={(e) =>
                 setUser(user =>
-                    ({...user, lastName: e.target.value}))}
-                value={user.lastName}/><br/>
+                            ({...user, lastName: e.target.value}))}
+                   value={user.lastName}/><br/>
             <label>Username</label>
             <input onChange={(e) =>
                 setUser(user =>
-                    ({...user, username: e.target.value}))}
+                            ({...user, username: e.target.value}))}
                    value={user.username}/><br/>
             <label>Password</label>
             <input onChange={(e) =>
                 setUser(user =>
-                    ({...user, password: e.target.value}))}
+                            ({...user, password: e.target.value}))}
                    value={user.password}/><br/>
-            <label>Role</label>
-            <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, role: e.target.value}))}
-                   value={user.role}/><br/>
+
+            <form> Role: <br/>
+                <input type="radio"
+                       name="role"
+                       value={user.role}
+                    // checked={this.state.selectedOption === "CUSTOMER"}
+                       onChange={() => setUser(user =>
+                                                   ({...user, role: "CUSTOMER"}))}/>
+                Customer <br/>
+
+                <input type="radio"
+                       name="role"
+                       value={user.role}
+                    // checked={this.state.selectedOption === "EMPLOYEE"}
+                       onChange={() => setUser(user =>
+                                                   ({...user, role: "EMPLOYEE"}))}/>
+                Employee <br/>
+
+                <input type="radio"
+                       name="role"
+                       value={user.role}
+                    // checked={this.state.selectedOption === "MANAGER"}
+                       onChange={() => setUser(user =>
+                                                   ({...user, role: "MANAGER"}))}/>
+                Manager
+            </form>
+
             <label>Email</label>
             <input onChange={(e) =>
                 setUser(user =>
-                    ({...user, email: e.target.value}))}
+                            ({...user, email: e.target.value}))}
                    value={user.email}/><br/>
             <label>Birthday</label>
             <input onChange={(e) =>
                 setUser(user =>
-                    ({...user, dateOfBirth: e.target.value}))}
+                            ({...user, dateOfBirth: e.target.value}))}
                    value={user.dateOfBirth}/><br/>
             <button className="btn btn-dark"
                     onClick={() => {
@@ -72,11 +94,11 @@ const UserFormEditor = () => {
                 Delete
             </button>
             <button className="btn btn-success"
-                onClick={() => createUser(user)}>
+                    onClick={() => createUser(user)}>
                 Create
             </button>
             <button className="btn btn-primary"
-                onClick={() => updateUser(user.id, user)}>
+                    onClick={() => updateUser(user.id, user)}>
                 Save
             </button>
         </div>
