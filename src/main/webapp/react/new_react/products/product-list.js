@@ -23,11 +23,16 @@ const ProductList = () => {
                     products.map(product =>
                         <li className="list-group-item"
                             key={product.id}>
+                            <text>
+                                {"ID: "}
+                            </text>
                             <Link to={`/products/find/${product.id}`}>
-                                {product.name},
-                                {product.price},
-                                {product.quantity}
+                                {product.id}
                             </Link>
+                            <text>
+                                {" Name: "}{product.name}{", Price: $"}{product.price}
+                                {", Quantity: "}{product.quantity}
+                            </text>
                         </li>)
                 }
             </ul>
