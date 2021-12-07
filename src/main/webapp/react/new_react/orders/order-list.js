@@ -1,32 +1,31 @@
-import userService from "./order-service"
-const { useState, useEffect } = React;
+import orderService from "./order-service"
+
+const {useState, useEffect} = React;
 const {Link, useHistory} = window.ReactRouterDOM;
 
 const OrderList = () => {
     const history = useHistory()
-    const [users, setUsers] = useState([])
+    const [orders, setOrders] = useState([])
     useEffect(() => {
-        findAllUsers()
+        findAllOrders()
     }, [])
-    const findAllUsers = () =>
-        userService.findAllUsers()
-            .then(users => setUsers(users))
-    return(
+    const findAllOrders = () =>
+        orderService.findAllOrders()
+            .then(orders => setOrders(orders))
+    return (
         <div>
-            <h2>User List</h2>
+            <h2>Order List</h2>
             <button className="btn btn-primary"
-                    onClick={() => history.push("/users/find/new")}>
-                Add User
+                    onClick={() => history.push("/orders/find/new")}>
+                Add Order
             </button>
             <ul className="list-group">
                 {
-                    users.map(user =>
+                    orders.map(order =>
                         <li className="list-group-item"
-                            key={user.id}>
-                            <Link to={`/users/find/${user.id}`}>
-                                {user.firstName},
-                                {user.lastName},
-                                {user.username}
+                            key={order.id}>
+                            <Link to={`/orders/find/${order.id}`}>
+                                {order.id}
                             </Link>
                         </li>)
                 }

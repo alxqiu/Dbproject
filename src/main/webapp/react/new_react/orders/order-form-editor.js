@@ -1,67 +1,58 @@
-import userService from "./order-service"
+import orderService from "./order-service"
 
 const {useState, useEffect} = React;
 const {useParams} = window.ReactRouterDOM;
 const OrderFormEditor = () => {
     const {id} = useParams()
-    const [user, setUser] = useState({})
+    const [order, setOrder] = useState({})
     useEffect(() => {
         if (id !== "new") {
-            findUserById(id)
+            findOrderById(id)
         }
     }, []);
-    const findUserById = (id) =>
-        userService.findUserById(id).then(user => setUser(user))
-    const deleteUser = (id) =>
-        userService.deleteUser(id)
+    const findOrderById = (id) =>
+        orderService.findOrderById(id).then(order => setOrder(order))
+    const deleteOrder = (id) =>
+        orderService.deleteOrder(id)
             .then(() => history.back())
-    const createUser = (user) =>
-        userService.createUser(user)
+    const createOrder = (order) =>
+        orderService.createOrder(order)
             .then(() => history.back())
-    const updateUser = (id, newUser) =>
-        userService.updateUser(id, newUser)
+    const updateOrder = (id, newOrder) =>
+        orderService.updateOrder(id, newOrder)
             .then(() => history.back())
     return (
         <div>
-            <h2>User Editor</h2>
+            <h2>Order Editor</h2>
+            {/*<label>Id</label>*/}
+            {/*<input value={order.id}/><br/>*/}
             <label>Id</label>
-            <input value={user.id}/><br/>
-            <label>First Name</label>
             <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, firstName: e.target.value}))}
-                   value={user.firstName}/><br/>
-            <label>Last Name</label>
+                setOrder(order =>
+                    ({...order, id: e.target.value}))}
+                   value={order.id}/><br/>
+            <label>Customer Id</label>
             <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, lastName: e.target.value}))}
-                value={user.lastName}/><br/>
-            <label>Username</label>
-            <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, username: e.target.value}))}
-                   value={user.username}/><br/>
-            <label>Password</label>
-            <input onChange={(e) =>
-                setUser(user =>
-                    ({...user, password: e.target.value}))}
-                   value={user.password}/><br/>
+                setOrder(order =>
+                    ({...order, customerId: e.target.value}))}
+                   value={order.customerId}/><br/>
             <button className="btn btn-dark"
                     onClick={() => {
                         history.back()
                     }}>
                 Cancel
             </button>
+
             <button className="btn btn-danger"
-                    onClick={() => deleteUser(user.id)}>
+                    onClick={() => deleteOrder(order.id)}>
                 Delete
             </button>
             <button className="btn btn-success"
-                onClick={() => createUser(user)}>
+                onClick={() => createOrder(order)}>
                 Create
             </button>
             <button className="btn btn-primary"
-                onClick={() => updateUser(user.id, user)}>
+                onClick={() => updateOrder(order.id, order)}>
                 Save
             </button>
         </div>

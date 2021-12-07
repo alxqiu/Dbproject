@@ -5,69 +5,69 @@ import com.example.springtemplate.users.User;
 import com.example.springtemplate.users.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class OrderDao {
-  @Autowired
-  UserRepository userRepository;
-  @Autowired
-  OrderRepository orderRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    OrderRepository orderRepository;
 
-  @GetMapping("/orm/orders/create/{userId}")
-  public Order createOrder(
-          @PathVariable("userId") Integer userId) {
-    Order order = new Order(userId);
+    @PostMapping("/orm/orders/create")
+    public Order createOrder(@RequestBody Order order) {
+        userRepository.findById(order.getCustomerId()).get().getOrders().add(order);
+        return orderRepository.save(order);
 
-    // Adding newly created order to user's list
-    User user = userRepository.findById(userId).get();
-    order.setOrderedBy(user);
-    List<Order> orders = user.getOrders();
-    orders.add(order);
-    user.setOrders(orders);
-    userRepository.save(user);
+    }
+///*
+//
+//    // Adding newly created order to user's list
+//    User user = userRepository.findById(orderId).get();
+//    order.setOrderedBy(user);
+//    List<Order> orders = user.getOrders();
+//    orders.add(order);
+//    user.setOrders(orders);
+//    userRepository.save(user);
+//
+//    return orderRepository.save(order);
+//*/
 
-    return orderRepository.save(order);
-  }
 
-  @GetMapping("/orm/orders/find")
-  public List<Order> findAllOrders() {
-    return (List<Order>) orderRepository.findAll();
-  }
+    @GetMapping("/orm/orders/find")
+    public List<Order> findAllOrders() {
+        return (List<Order>) orderRepository.findAll();
+    }
 
-  @GetMapping("orm/orders/find/id/{orderId}")
-  public Order findOrderById(
-          @PathVariable("orderId") Integer orderId) {
-    return orderRepository.findById(orderId).get();
-  }
+    @GetMapping("orm/orders/find/{orderId}")
+    public Order findOrderById(
+            @PathVariable("orderId") Integer orderId) {
+        return orderRepository.findById(orderId).get();
+    }
 
-  @GetMapping("/orm/users/{userId}/orders")
-  public List<Order> findOrdersByUser(
-          @PathVariable("userId") Integer userId) {
-    return userRepository.findById(userId).get().getOrders();
-  }
+//  @GetMapping("/orm/orders/find/{customerId}")
+//  public List<Order> findOrdersByUser(
+//          @PathVariable("userId") Integer userId) {
+//    return userRepository.findById(userId).get().getOrders();
+//  }
 
-  @GetMapping("/orm/orders/delete/{orderId}")
-  public void deleteOrder(
-          @PathVariable("orderId") Integer id) {
-    orderRepository.deleteById(id);
-  }
+    @DeleteMapping("/orm/orders/delete/{orderId}")
+    public void deleteOrder(
+            @PathVariable("orderId") Integer id) {
+        orderRepository.deleteById(id);
+    }
 
-  @GetMapping("/orm/orders/update/{orderId}/{userId}")
-  public Order updateOrder(
-          @PathVariable("orderId") Integer id,
-          @PathVariable("userId") Integer userId) {
-    Order order = orderRepository.findById(id).get();
-    order.setCustomerId(userId);
-    return orderRepository.save(order);
-  }
+    @PutMapping("/orm/orders/update/{orderId}/{userId}")
+    public Order updateOrder(
+            @PathVariable("orderId") Integer id,
+            @PathVariable("userId") Integer userId) {
+        Order order = orderRepository.findById(id).get();
+        order.setCustomerId(userId);
+        return orderRepository.save(order);
+    }
 }
 
 
