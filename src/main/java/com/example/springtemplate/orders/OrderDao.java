@@ -21,8 +21,8 @@ public class OrderDao {
     public Order createOrder(@RequestBody Order order) {
         userRepository.findById(order.getCustomerId()).get().getOrders().add(order);
         return orderRepository.save(order);
-
     }
+
 ///*
 //
 //    // Adding newly created order to user's list
