@@ -17,7 +17,7 @@ a business may want to know who they have hired and who their current/past custo
 which products they ordered/used. Our Retail Store Database editor aims to solve this issue and promote 
 success among small businesses.
 
-source1: https://www.zenbusiness.com/blog/why-small-businesses-fail/
+source1: https://www.zenbusiness.com/blog/why-small-businesses-fail/ <br />
 source2: https://www.electronicsb2b.com/industry-buzz/investing-in-these-technologies-in-2020-is-a-do-or-die-for-small-businesses/
 
 ## Solution Statement:
