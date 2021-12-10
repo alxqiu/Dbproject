@@ -1,6 +1,6 @@
 # Retail-Database-Webapp
 
-Team: Alexander Qiu, Kelly Phalen, Pranav Phadke, Jason Zhang
+Team: Alexander Qiu, Kelly Phalen, Pranav Phadke, Jason Zhang <br /> 
 CS3200 Section: 1:35pm - 3:15pm Tuesdays and Fridays
 
 ## Problem Statement:
@@ -27,7 +27,7 @@ details about the businesses product logistics. Through our application, one has
 to list all users, products, and orders related to the business. They can also create or delete said
 users, products, and orders. Furthemore, one can click on an individual listed item to view additional 
 attributes regarding the said item. By clicking on an individual item, one has the ability to update
-attributes or delete the item as a whole.
+attributes or delete the item as a whole. <br />
  The database our program uses to store all said information is implemented via MySQL. Then, through
 the use of the Java Spring framework, it relies on a repository to access data from the MySQL database
 and a DAO to read the information from the repository. Finally, it uses React to create a CRUD based
@@ -38,7 +38,7 @@ interactive editor for the database.
 company that operate any retail store monitored by this application. We target an audience that 
 can make decisions while having access to data of purchases, product stock, and users. This 
 especially can be good for small business owners who have limited resources, since there are 
-no price barriers in the way and limited technological experience is required to use our application. 
+no price barriers in the way and limited technological experience is required to use our application. <br />
  For example, say a manager wanted to contact a set of customers who bought a certain faulty product.
 Finding all customers for this recall would be fairly time consuming if done without our application
 (for example, using paper book-keeping). Through our application, one could easily find all customers who 
