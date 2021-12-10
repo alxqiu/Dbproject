@@ -40,11 +40,19 @@ export const updateProduct = (id, product) => {
         .then(response => response.json())
 }
 
+// retrieve all product orders for a single product by their ID
+export const findAllProductOrderById = (id) => {
+    return fetch(`${PRODUCTS_URL}/find/product_orders/${id}`)
+        .then(response => response.json())
+}
+
+
 // export all functions as the API to this service
 export default {
     findAllProducts,
     findProductById,
     deleteProduct,
     createProduct,
-    updateProduct
+    updateProduct,
+    findAllProductOrderById
 }

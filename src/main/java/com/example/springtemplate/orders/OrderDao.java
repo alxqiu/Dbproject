@@ -1,12 +1,16 @@
 package com.example.springtemplate.orders;
 
 import com.example.springtemplate.product_orders.ProductOrder;
+import com.example.springtemplate.products.Product;
+import com.example.springtemplate.products.ProductRepository;
 import com.example.springtemplate.users.User;
 import com.example.springtemplate.users.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,6 +20,8 @@ public class OrderDao {
     UserRepository userRepository;
     @Autowired
     OrderRepository orderRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @PostMapping("/orm/orders/create")
     public Order createOrder(@RequestBody Order order) {
@@ -68,7 +74,21 @@ public class OrderDao {
         order.setCustomerId(orderUpdates.getCustomerId());
         return orderRepository.save(order);
     }
+
+    @GetMapping("/orm/orders/find/products/{orderId}")
+    public List<Product> findProductsById(
+            @PathVariable("orderId") Integer orderId) {
+        List<ProductOrder> productOrders = orderRepository.findById(orderId).get().getProductOrders();
+        List<Product> products = new ArrayList<>();
+        for (ProductOrder po : productOrders) {
+            products.add(productRepository.findById(po.getProductId()).get());
+        }
+        return products;
+    }
 }
+
+
+
 
 
 /*
