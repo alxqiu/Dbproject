@@ -1,4 +1,5 @@
 import userService from "./user-service"
+import orderService from "../orders/order-service";
 
 const {useState, useEffect} = React;
 const {useParams} = window.ReactRouterDOM;
@@ -10,6 +11,17 @@ const UserFormEditor = () => {
             findUserById(id)
         }
     }, []);
+
+    //
+    const [orders, setOrders] = useState([])
+    useEffect(() => {
+        findAllOrders(id)
+    }, [])
+    const findAllOrders = (id) =>
+        userService.findAllOrdersById(id)
+            .then(orders => setOrders(orders))
+    //
+
     const findUserById = (id) =>
         userService.findUserById(id).then(user => setUser(user))
     const deleteUser = (id) =>
@@ -101,6 +113,30 @@ const UserFormEditor = () => {
                     onClick={() => updateUser(user.id, user)}>
                 Save
             </button>
+
+            <ul className="list-group">
+                All Orders
+                {
+                    orders.map(order =>
+                                     <li className="list-group-item"
+                                         key={order.id}>
+
+                                         <text>
+                                             {"ID: "}
+                                         </text>
+
+                                         {/*<Link to={`/products/find/${product.id}`}>*/}
+                                         {/*    {product.id}*/}
+                                         {/*</Link>*/}
+
+                                         <text>
+                                             {" OrderID: "}{order.id}
+                                         </text>
+                                     </li>)
+                }
+            </ul>
+
+
         </div>
     )
 }

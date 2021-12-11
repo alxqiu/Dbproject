@@ -28,7 +28,6 @@ const App = () => {
                         <OrderFormEditor/>
                     </Route>
                 </HashRouter>
-
             </div>
 
             <div className="container-fluid">

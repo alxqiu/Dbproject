@@ -46,8 +46,8 @@ export const findOrderById = (id) => {
     }
 
 // retrieve all product orders a single order by their ID
-export const findAllProductOrderById = (id) => {
-    return fetch(`${ORDERS_URL}/find/product_orders/${id}`)
+export const findAllProductsById = (id) => {
+    return fetch(`${ORDERS_URL}/find/products/${id}`)
         .then(response => response.json())
 }
 
@@ -60,5 +60,5 @@ export const findAllProductOrderById = (id) => {
         deleteOrder,
         createOrder,
         updateOrder,
-        findAllProductOrderById
+        findAllProductsById
 }

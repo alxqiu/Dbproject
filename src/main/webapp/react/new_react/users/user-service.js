@@ -40,11 +40,19 @@ export const updateUser = (id, user) => {
         .then(response => response.json())
 }
 
+// retrieve all product orders a single order by their ID
+export const findAllOrdersById = (id) => {
+    return fetch(`${USERS_URL}/find/orders/${id}`)
+        .then(response => response.json())
+}
+
+
 // export all functions as the API to this service
 export default {
     findAllUsers,
     findUserById,
     deleteUser,
     createUser,
-    updateUser
+    updateUser,
+    findAllOrdersById
 }

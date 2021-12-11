@@ -1,5 +1,7 @@
 package com.example.springtemplate.users;
 
+import com.example.springtemplate.orders.Order;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,4 +50,13 @@ public class UserDao {
         user.setDateOfBirth(userUpdates.getDateOfBirth());
         return userRepository.save(user);
     }
+
+
+    @GetMapping("/orm/users/find/orders/{userId}")
+    public List<Order> findOrderssById(
+            @PathVariable("userId") Integer userId) {
+        return userRepository.findById(userId).get().getOrders();
+    }
+
+
 }

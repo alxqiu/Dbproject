@@ -83,6 +83,7 @@ public class OrderDao {
         for (ProductOrder po : productOrders) {
             products.add(productRepository.findById(po.getProductId()).get());
         }
+        System.out.println(products);
         return products;
     }
 }

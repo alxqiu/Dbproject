@@ -26,8 +26,17 @@ const OrderFormEditor = () => {
         userService.findAllUsers()
             .then(users => setUsers(users))
 
+    //for accessing products of an order
+    const [products, setProducts] = useState([])
+    useEffect(() => {
+        findAllProducts(id)
+    }, [])
+    const findAllProducts = (id) =>
+        orderService.findAllProductsById(id)
+            .then(products => setProducts(products))
+
     const getOrderUser = (id) =>
-         userService.findUserById(id).then(() => reactRouterHistory.push(`/users/find/${id}`))
+        userService.findUserById(id).then(() => reactRouterHistory.push(`/users/find/${id}`))
     // const processUsers = async () =>
     //     JSON.parse(await userService.findAllUsers())
     const deleteOrder = (id) =>
@@ -47,7 +56,7 @@ const OrderFormEditor = () => {
             <label>Id</label>
             <input onChange={(e) =>
                 setOrder(order =>
-                    ({...order, id: e.target.value}))}
+                             ({...order, id: e.target.value}))}
                    value={order.id}/><br/>
             {/*<label>Customer Id</label>*/}
             {/*<input onChange={(e) =>*/}
@@ -56,9 +65,9 @@ const OrderFormEditor = () => {
             {/*       value={order.customerId}/><br/>*/}
 
             <label>Customer ID</label>
-            <select onChange = {(e) =>
+            <select onChange={(e) =>
                 setOrder(order =>
-                    ({...order, customerId: e.target.value}))}
+                             ({...order, customerId: e.target.value}))}
                     value={order.customerId}>
                 {
                     users.map((user) => <option key={user.id} value={user.id}> {user.id}</option>)
@@ -76,17 +85,41 @@ const OrderFormEditor = () => {
                 Delete
             </button>
             <button className="btn btn-success"
-                onClick={() => createOrder(order)}>
+                    onClick={() => createOrder(order)}>
                 Create
             </button>
             <button className="btn btn-primary"
-                onClick={() => updateOrder(order.id, order)}>
+                    onClick={() => updateOrder(order.id, order)}>
                 Save
             </button>
             <button className="btn btn-secondary"
                     onClick={() => getOrderUser(order.customerId)}>
                 User
             </button>
+            <br/>
+            <ul className="list-group">
+                All Products
+                {
+                    products.map(product =>
+                                     <li className="list-group-item"
+                                         key={product.id}>
+
+                                         <text>
+                                             {"ID: "}
+                                         </text>
+
+                                         {/*<Link to={`/products/find/${product.id}`}>*/}
+                                         {/*    {product.id}*/}
+                                         {/*</Link>*/}
+
+                                         <text>
+                                             {" Name: "}{product.name}
+                                             {", Price: "}{product.price}
+                                             {", Quantity: "}{product.quantity}
+                                         </text>
+                                     </li>)
+                }
+            </ul>
         </div>
     )
 }
