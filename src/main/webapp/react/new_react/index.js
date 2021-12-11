@@ -9,7 +9,6 @@ const {HashRouter, Route} = window.ReactRouterDOM;
 const App = () => {
     return (
         <div className="lists">
-
             <div className="container-fluid">
                 <HashRouter>
                     <Route path={["/users", "/"]} exact={true}>
@@ -19,7 +18,6 @@ const App = () => {
                         <UserFormEditor/>
                     </Route>
                 </HashRouter>
-
             </div>
             <div className="container-fluid">
                 <HashRouter>

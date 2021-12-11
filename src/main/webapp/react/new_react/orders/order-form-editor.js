@@ -1,8 +1,12 @@
 import orderService from "./order-service"
+import userService from "../users/user-service"
+import UserFormEditor from "../users/user-form-editor";
 
 const {useState, useEffect} = React;
-const {useParams} = window.ReactRouterDOM;
+const {useParams, useHistory} = window.ReactRouterDOM;
+
 const OrderFormEditor = () => {
+    const reactRouterHistory = useHistory()
     const {id} = useParams()
     const [order, setOrder] = useState({})
     useEffect(() => {
@@ -12,6 +16,8 @@ const OrderFormEditor = () => {
     }, []);
     const findOrderById = (id) =>
         orderService.findOrderById(id).then(order => setOrder(order))
+    const getOrderUser = (id) =>
+         userService.findUserById(id).then(() => reactRouterHistory.push(`/users/find/${id}`))
     const deleteOrder = (id) =>
         orderService.deleteOrder(id)
             .then(() => history.back())
@@ -42,7 +48,6 @@ const OrderFormEditor = () => {
                     }}>
                 Cancel
             </button>
-
             <button className="btn btn-danger"
                     onClick={() => deleteOrder(order.id)}>
                 Delete
@@ -54,6 +59,10 @@ const OrderFormEditor = () => {
             <button className="btn btn-primary"
                 onClick={() => updateOrder(order.id, order)}>
                 Save
+            </button>
+            <button className="btn btn-secondary"
+                    onClick={() => getOrderUser(order.customerId)}>
+                User
             </button>
         </div>
     )
