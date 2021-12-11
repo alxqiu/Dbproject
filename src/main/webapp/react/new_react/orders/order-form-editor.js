@@ -2,7 +2,7 @@ import orderService from "./order-service"
 import userService from "../users/user-service"
 import UserFormEditor from "../users/user-form-editor";
 
-const {useState, useEffect} = React;
+const {useState, useEffect, Dropdown} = React;
 const {useParams, useHistory} = window.ReactRouterDOM;
 
 const OrderFormEditor = () => {
@@ -16,8 +16,20 @@ const OrderFormEditor = () => {
     }, []);
     const findOrderById = (id) =>
         orderService.findOrderById(id).then(order => setOrder(order))
+
+    // for accessing all users
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        findAllUsers()
+    }, [])
+    const findAllUsers = () =>
+        userService.findAllUsers()
+            .then(users => setUsers(users))
+
     const getOrderUser = (id) =>
          userService.findUserById(id).then(() => reactRouterHistory.push(`/users/find/${id}`))
+    // const processUsers = async () =>
+    //     JSON.parse(await userService.findAllUsers())
     const deleteOrder = (id) =>
         orderService.deleteOrder(id)
             .then(() => history.back())
@@ -37,11 +49,22 @@ const OrderFormEditor = () => {
                 setOrder(order =>
                     ({...order, id: e.target.value}))}
                    value={order.id}/><br/>
-            <label>Customer Id</label>
-            <input onChange={(e) =>
+            {/*<label>Customer Id</label>*/}
+            {/*<input onChange={(e) =>*/}
+            {/*    setOrder(order =>*/}
+            {/*        ({...order, customerId: e.target.value}))}*/}
+            {/*       value={order.customerId}/><br/>*/}
+
+            <label>Customer ID</label>
+            <select onChange = {(e) =>
                 setOrder(order =>
                     ({...order, customerId: e.target.value}))}
-                   value={order.customerId}/><br/>
+                    value={order.customerId}>
+                {
+                    users.map((user) => <option key={user.id} value={user.id}> {user.id}</option>)
+                }
+            </select>
+            <br/>
             <button className="btn btn-dark"
                     onClick={() => {
                         history.back()
