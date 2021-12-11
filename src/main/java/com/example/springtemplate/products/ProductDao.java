@@ -2,10 +2,13 @@ package com.example.springtemplate.products;
 
 
 import com.example.springtemplate.orders.Order;
-import com.example.springtemplate.products.Product;
+import com.example.springtemplate.product_orders.ProductOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.example.springtemplate.orders.OrderRepository;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -13,9 +16,11 @@ import java.util.List;
 public class ProductDao {
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    OrderRepository orderRepository;
 
     @PostMapping("/orm/products/create")
-    public Product createOrder(@RequestBody Product product) {
+    public Product createProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
 
@@ -24,7 +29,7 @@ public class ProductDao {
         return (List<Product>) productRepository.findAll();
     }
 
-    @GetMapping("orm/products/find/{productId}")
+    @GetMapping("/orm/products/find/{productId}")
     public Product findProductById(
             @PathVariable("productId") Integer productId) {
         return productRepository.findById(productId).get();
@@ -47,4 +52,24 @@ public class ProductDao {
         product.setQuantity(productUpdates.getQuantity());
         return productRepository.save(product);
     }
+
+//    @GetMapping("/orm/products/find/product_orders/{productId}")
+//    public List<ProductOrder> findProductOrdersById(
+//            @PathVariable("productId") Integer productId) {
+//        return productRepository.findById(productId).get().getProductOrders();
+//    }
+
+    @GetMapping("/orm/orders/find/orders/{productId}")
+    public List<Order> findOrdersById(
+            @PathVariable("productId") Integer productId) {
+        List<ProductOrder> productOrders = productRepository.findById(productId).get().getProductOrders();
+        List<Order> orders = new ArrayList<>();
+        for (ProductOrder po : productOrders) {
+            orders.add(orderRepository.findById(po.getOrderId()).get());
+        }
+        return orders;
+    }
+
+
+
 }
