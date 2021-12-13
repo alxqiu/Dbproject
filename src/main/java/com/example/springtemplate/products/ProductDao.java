@@ -53,12 +53,6 @@ public class ProductDao {
         return productRepository.save(product);
     }
 
-//    @GetMapping("/orm/products/find/product_orders/{productId}")
-//    public List<ProductOrder> findProductOrdersById(
-//            @PathVariable("productId") Integer productId) {
-//        return productRepository.findById(productId).get().getProductOrders();
-//    }
-
     @GetMapping("/orm/products/find/orders/{productId}")
     public List<Order> findOrdersById(
             @PathVariable("productId") Integer productId) {
@@ -69,7 +63,4 @@ public class ProductDao {
         }
         return orders;
     }
-
-
-
 }

@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `retail_store_fp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `retail_store_fp`;
--- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: retail_store_fp
+-- Host: 127.0.0.1    Database: retail_store_fp
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,15 +29,9 @@ CREATE TABLE `product_orders` (
   `product_id` int DEFAULT NULL,
   `created` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `contained_in_id` int DEFAULT NULL,
-  `product_type_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `product_orders_to_order_idx` (`order_id`),
   KEY `product_orders_to_product_idx` (`product_id`),
-  KEY `FK1p5943240prewiu0drnnmsml0` (`contained_in_id`),
-  KEY `FKi43pnhllkmoy7yor4el5gok06` (`product_type_id`),
-  CONSTRAINT `FK1p5943240prewiu0drnnmsml0` FOREIGN KEY (`contained_in_id`) REFERENCES `orders` (`id`),
-  CONSTRAINT `FKi43pnhllkmoy7yor4el5gok06` FOREIGN KEY (`product_type_id`) REFERENCES `products` (`id`),
   CONSTRAINT `product_orders_to_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_orders_to_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -51,7 +43,7 @@ CREATE TABLE `product_orders` (
 
 LOCK TABLES `product_orders` WRITE;
 /*!40000 ALTER TABLE `product_orders` DISABLE KEYS */;
-INSERT INTO `product_orders` VALUES (2,508,4,3,'2021-11-25 22:49:13','2021-11-25 22:49:13',NULL,NULL),(3,30,1,5,'2021-11-25 22:49:13','2021-11-25 22:49:13',NULL,NULL),(4,7,4,1,'2021-11-25 22:49:13','2021-11-25 22:49:13',NULL,NULL),(5,10,3,4,'2021-11-25 22:49:13','2021-11-25 22:49:13',NULL,NULL);
+INSERT INTO `product_orders` VALUES (2,508,4,3,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(4,7,4,1,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(5,10,3,4,'2021-11-25 22:49:13','2021-11-25 22:49:13');
 /*!40000 ALTER TABLE `product_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-03 10:04:17
+-- Dump completed on 2021-12-13 18:36:38

@@ -101,7 +101,7 @@ const OrderFormEditor = () => {
                                          key={product.id}>
 
                                          <text>
-                                             {"ID: " + product.id + " "}
+                                             {"Product ID: " + product.id + " "}
                                              {" Name: "}{product.name}
                                              {", Price: "}{product.price}
                                              {", Quantity: "}{product.quantity}

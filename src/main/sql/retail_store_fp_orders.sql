@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `retail_store_fp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `retail_store_fp`;
--- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: retail_store_fp
+-- Host: 127.0.0.1    Database: retail_store_fp
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,14 +27,10 @@ CREATE TABLE `orders` (
   `user_id` int DEFAULT NULL,
   `created` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `customer_id` int DEFAULT NULL,
-  `ordered_by_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `orders_to_user_idx` (`user_id`),
-  KEY `FK4urs5ihdvslsf3h7x1gxcewlh` (`ordered_by_id`),
-  CONSTRAINT `FK4urs5ihdvslsf3h7x1gxcewlh` FOREIGN KEY (`ordered_by_id`) REFERENCES `users` (`id`),
   CONSTRAINT `orders_to_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +39,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,3,'2021-11-25 22:49:13','2021-11-25 22:49:13',NULL,NULL),(3,4,'2021-11-25 22:49:13','2021-11-25 22:49:13',NULL,NULL),(4,5,'2021-11-25 22:49:13','2021-11-25 22:49:13',NULL,NULL),(5,NULL,'2021-12-02 13:44:30','2021-12-02 13:44:30',1,NULL),(6,NULL,'2021-12-02 13:44:52','2021-12-02 13:44:52',12,NULL);
+INSERT INTO `orders` VALUES (3,4,'2021-11-25 22:49:13','2021-12-11 17:12:42'),(4,13,'2021-11-25 22:49:13','2021-12-13 18:28:38'),(5,13,'2021-12-02 13:44:30','2021-12-13 18:28:27'),(7,10,'2021-12-11 14:58:49','2021-12-12 23:12:40'),(8,10,'2021-12-11 17:13:41','2021-12-12 23:12:46');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-03 10:04:17
+-- Dump completed on 2021-12-13 18:36:38

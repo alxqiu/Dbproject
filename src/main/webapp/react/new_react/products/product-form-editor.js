@@ -84,8 +84,8 @@ const ProductFormEditor = () => {
                                          key={order.id}>
 
                                          <text>
-                                             {"ID: " + order.id + " "}
-                                             {" OrderID: "}{order.userId}
+                                             {"Order ID: " + order.id + " "}
+                                             {" Customer ID: "}{order.userId}
                                              {" "}
                                          </text>
 

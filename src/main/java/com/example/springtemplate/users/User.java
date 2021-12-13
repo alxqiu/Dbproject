@@ -1,10 +1,9 @@
 package com.example.springtemplate.users;
-import com.example.springtemplate.Role;
+
 import com.example.springtemplate.orders.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
@@ -22,9 +21,6 @@ public class User {
     private String role;
     private String email;
     private Date dateOfBirth;
-
-//    @Transient
-//    private String[] possibleRoles = new String[] {"customer", "employee", "manager"};
 
     @OneToMany(mappedBy = "userId")
     @JsonIgnore

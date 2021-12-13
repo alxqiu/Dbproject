@@ -1,7 +1,6 @@
 package com.example.springtemplate.orders;
 
 import com.example.springtemplate.product_orders.ProductOrder;
-import com.example.springtemplate.users.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
@@ -16,9 +15,6 @@ public class Order {
   private Integer id;
   private Integer userId;
 
-  @ManyToOne
-//  @JsonIgnore
-  private User orderedBy;
 
   @OneToMany(mappedBy = "orderId")
   @JsonIgnore
@@ -27,9 +23,6 @@ public class Order {
   public List<ProductOrder> getProductOrders() { return productOrders; }
   public void setProductOrders(List<ProductOrder> productOrders) { this.productOrders = productOrders; }
 
-  public User getOrderedBy() { return orderedBy; }
-
-  public void setOrderedBy(User orderedBy) { this.orderedBy = orderedBy; }
 
   public Integer getId() {
     return id;

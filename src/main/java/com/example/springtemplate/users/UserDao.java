@@ -5,7 +5,6 @@ import com.example.springtemplate.orders.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -57,6 +56,4 @@ public class UserDao {
             @PathVariable("userId") Integer userId) {
         return userRepository.findById(userId).get().getOrders();
     }
-
-
 }

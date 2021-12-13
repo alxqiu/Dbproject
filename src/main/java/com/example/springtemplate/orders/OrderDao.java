@@ -29,19 +29,6 @@ public class OrderDao {
         return orderRepository.save(order);
     }
 
-///*
-//
-//    // Adding newly created order to user's list
-//    User user = userRepository.findById(orderId).get();
-//    order.setOrderedBy(user);
-//    List<Order> orders = user.getOrders();
-//    orders.add(order);
-//    user.setOrders(orders);
-//    userRepository.save(user);
-//
-//    return orderRepository.save(order);
-//*/
-
 
     @GetMapping("/orm/orders/find")
     public List<Order> findAllOrders() {
@@ -54,11 +41,6 @@ public class OrderDao {
         return orderRepository.findById(orderId).get();
     }
 
-//  @GetMapping("/orm/orders/find/{customerId}")
-//  public List<Order> findOrdersByUser(
-//          @PathVariable("userId") Integer userId) {
-//    return userRepository.findById(userId).get().getOrders();
-//  }
 
     @DeleteMapping("/orm/orders/delete/{orderId}")
     public void deleteOrder(
@@ -87,55 +69,3 @@ public class OrderDao {
         return products;
     }
 }
-
-
-
-
-
-/*
-http://localhost:8080/api/users/1/tweets
-[
-  {
-    "tweetId": 1,
-    "tweet": "Alice 1st Tweet",
-    "tweetedOn": "2021-11-28T13:01:30.000+00:00"
-  },
-  {
-    "tweetId": 3,
-    "tweet": "Alice 2nd Tweet",
-    "tweetedOn": "2021-11-28T13:01:30.000+00:00"
-  }
-]
- */
-
-/*
-http://localhost:8080/api/users/2/tweets
-[
-  {
-    "tweetId": 2,
-    "tweet": "Bob 1st Tweet",
-    "tweetedOn": "2021-11-28T13:01:30.000+00:00"
-  }
-]
- */
-
-/*
-http://localhost:8080/api/users/3/tweets
-[
-  {
-    "tweetId": 4,
-    "tweet": "Charlie 1st Tweet",
-    "tweetedOn": "2021-11-28T13:01:30.000+00:00"
-  },
-  {
-    "tweetId": 5,
-    "tweet": "Charlie 2nd Tweet",
-    "tweetedOn": "2021-11-28T13:01:30.000+00:00"
-  },
-  {
-    "tweetId": 6,
-    "tweet": "Charlie 3rd Tweet",
-    "tweetedOn": "2021-11-28T13:01:30.000+00:00"
-  }
-]
- */

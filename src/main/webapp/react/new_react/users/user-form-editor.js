@@ -124,10 +124,6 @@ const UserFormEditor = () => {
                                        key={order.id}>
 
                                        <text>
-                                           {"ID: "}
-                                       </text>
-
-                                       <text>
                                            {" OrderID: "}{order.id}
                                        </text>
 

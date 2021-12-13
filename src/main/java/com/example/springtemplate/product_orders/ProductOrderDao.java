@@ -4,13 +4,11 @@ import com.example.springtemplate.orders.Order;
 import com.example.springtemplate.orders.OrderRepository;
 import com.example.springtemplate.products.Product;
 import com.example.springtemplate.products.ProductRepository;
-import com.example.springtemplate.users.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,7 +32,6 @@ public class ProductOrderDao {
 
     // Adding newly created product order to order's list
     Order order = orderRepository.findById(orderId).get();
-    productOrder.setContainedIn(order);
     List<ProductOrder> productOrders = order.getProductOrders();
     productOrders.add(productOrder);
     order.setProductOrders(productOrders);
@@ -42,7 +39,6 @@ public class ProductOrderDao {
 
     // Adding newly created product order to product's list
     Product product = productRepository.findById(productId).get();
-    productOrder.setProductType(product);
     productOrders = product.getProductOrders();
     productOrders.add(productOrder);
     product.setProductOrders(productOrders);

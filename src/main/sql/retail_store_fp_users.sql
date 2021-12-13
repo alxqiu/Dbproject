@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `retail_store_fp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `retail_store_fp`;
--- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: retail_store_fp
+-- Host: 127.0.0.1    Database: retail_store_fp
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,7 +36,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `users_to_role_idx` (`role`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +45,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'Barack','Obama','barryO','pres44','EMPLOYEE','president@whitehouse.gov','1961-08-04','2021-11-25 22:49:13','2021-11-25 22:49:13'),(3,'Glenn','Seaborg','ProtonPower','element106','MANAGER','seaborgg@doe.gov','1912-04-19','2021-11-25 22:49:13','2021-11-25 22:49:13'),(4,'Grace','Hopper','graphtraveller','cs4life','EMPLOYEE','hopperg@navy.gov','1906-12-09','2021-11-25 22:49:13','2021-11-25 22:49:13'),(5,'Giorno','Giovanna','gexperience','haveadream','CUSTOMER','giovannag@passione.com','1985-03-01','2021-11-25 22:49:13','2021-11-25 22:49:13');
+INSERT INTO `users` VALUES (2,'Barack','Obama','barryObama','pres44','EMPLOYEE','president@whitehouse.gov','1961-08-03','2021-11-25 22:49:13','2021-12-06 17:48:32'),(4,'Grace','Hopper','graphtraveler','cs4life','MANAGER','hopperg@navy.gov','1906-12-03','2021-11-25 22:49:13','2021-12-11 15:18:50'),(5,'Giorno','Giovanna','gexperience','haveadream','CUSTOMER','giovannag@passione.com','1985-02-27','2021-11-25 22:49:13','2021-12-11 14:55:18'),(10,'Alex','Qiu','aquaa','hello','CUSTOMER',NULL,'2001-09-05','2021-12-06 21:50:52','2021-12-11 14:55:57'),(11,'new','hew','new','new','EMPLOYEE',NULL,NULL,'2021-12-06 22:09:40','2021-12-07 00:11:23'),(13,'hi','hi','hi','hi','CUSTOMER',NULL,NULL,'2021-12-11 17:10:08','2021-12-11 17:10:08');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-03 10:04:17
+-- Dump completed on 2021-12-13 18:36:38
