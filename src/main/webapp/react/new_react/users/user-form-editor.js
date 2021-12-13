@@ -2,8 +2,9 @@ import userService from "./user-service"
 import orderService from "../orders/order-service";
 
 const {useState, useEffect} = React;
-const {useParams} = window.ReactRouterDOM;
+const {useParams, useHistory} = window.ReactRouterDOM;
 const UserFormEditor = () => {
+    const reactRouterHistory = useHistory()
     const {id} = useParams()
     const [user, setUser] = useState({})
     useEffect(() => {
@@ -11,11 +12,12 @@ const UserFormEditor = () => {
             findUserById(id)
         }
     }, []);
-
     //
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        findAllOrders(id)
+        if (id !== "new") {
+            findAllOrders(id)
+        }
     }, [])
     const findAllOrders = (id) =>
         userService.findAllOrdersById(id)
@@ -63,7 +65,7 @@ const UserFormEditor = () => {
                 <input type="radio"
                        name="role"
                        value={user.role}
-                       defaultChecked checked = {user.role === "CUSTOMER"}
+                       defaultChecked checked={user.role === "CUSTOMER"}
                        onChange={() => setUser(user =>
                                                    ({...user, role: "CUSTOMER"}))}/>
                 Customer <br/>
@@ -71,7 +73,7 @@ const UserFormEditor = () => {
                 <input type="radio"
                        name="role"
                        value={user.role}
-                       defaultChecked checked = {user.role === "EMPLOYEE"}
+                       defaultChecked checked={user.role === "EMPLOYEE"}
                        onChange={() => setUser(user =>
                                                    ({...user, role: "EMPLOYEE"}))}/>
                 Employee <br/>
@@ -79,7 +81,7 @@ const UserFormEditor = () => {
                 <input type="radio"
                        name="role"
                        value={user.role}
-                       defaultChecked checked = {user.role === "MANAGER"}
+                       defaultChecked checked={user.role === "MANAGER"}
                        onChange={() => setUser(user =>
                                                    ({...user, role: "MANAGER"}))}/>
                 Manager
@@ -118,21 +120,24 @@ const UserFormEditor = () => {
                 All Orders
                 {
                     orders.map(order =>
-                                     <li className="list-group-item"
-                                         key={order.id}>
+                                   <li className="list-group-item"
+                                       key={order.id}>
 
-                                         <text>
-                                             {"ID: "}
-                                         </text>
+                                       <text>
+                                           {"ID: "}
+                                       </text>
 
-                                         {/*<Link to={`/products/find/${product.id}`}>*/}
-                                         {/*    {product.id}*/}
-                                         {/*</Link>*/}
+                                       <text>
+                                           {" OrderID: "}{order.id}
+                                       </text>
 
-                                         <text>
-                                             {" OrderID: "}{order.id}
-                                         </text>
-                                     </li>)
+                                       <button className="btn btn-secondary"
+                                               onClick={() => reactRouterHistory.push(
+                                                   `/orders/find/${order.id}`)}>
+                                           Edit Order
+                                       </button>
+
+                                   </li>)
                 }
             </ul>
 
