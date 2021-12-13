@@ -85,7 +85,7 @@ const ProductFormEditor = () => {
 
                                          <text>
                                              {"ID: " + order.id + " "}
-                                             {" CustomerID: "}{order.customerId}
+                                             {" OrderID: "}{order.userId}
                                              {" "}
                                          </text>
 
