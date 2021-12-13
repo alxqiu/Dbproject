@@ -1,8 +1,10 @@
 import productService from "./product-service"
+import orderService from "../orders/order-service";
 
 const {useState, useEffect} = React;
-const {useParams} = window.ReactRouterDOM;
+const {useParams,useHistory} = window.ReactRouterDOM;
 const ProductFormEditor = () => {
+    const reactRouterHistory = useHistory()
     const {id} = useParams()
     const [product, setProduct] = useState({})
     useEffect(() => {
@@ -10,6 +12,18 @@ const ProductFormEditor = () => {
             findProductById(id)
         }
     }, []);
+
+    //for accessing orders of a product
+    const [orders, setOrders] = useState([])
+    useEffect(() => {
+        if (id !== "new") {
+            findAllOrders(id)
+        }
+    }, [])
+    const findAllOrders = (id) =>
+        productService.findAllOrdersById(id)
+            .then(orders => setOrders(orders))
+
     const findProductById = (id) =>
         productService.findProductById(id).then(product => setProduct(product))
     const deleteProduct = (id) =>
@@ -61,6 +75,29 @@ const ProductFormEditor = () => {
                 onClick={() => updateProduct(product.id, product)}>
                 Save
             </button>
+
+            <ul className="list-group">
+                All Orders
+                {
+                    orders.map(order =>
+                                     <li className="list-group-item"
+                                         key={order.id}>
+
+                                         <text>
+                                             {"ID: " + order.id + " "}
+                                             {" CustomerID: "}{order.customerId}
+                                             {" "}
+                                         </text>
+
+                                         <button className="btn btn-secondary"
+                                                 onClick={() => reactRouterHistory.push(
+                                                     `/orders/find/${order.id}`)}>
+                                             Edit Order
+                                         </button>
+                                     </li>)
+                }
+            </ul>
+
         </div>
     )
 }
