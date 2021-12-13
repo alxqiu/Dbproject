@@ -32,7 +32,7 @@ const OrderList = () => {
                                 {order.id}
                             </Link>
                             <text>
-                                {" Customer: "}{order.customerId}
+                                {" Customer: "}{order.userId}
                             </text>
                         </li>)
                 }

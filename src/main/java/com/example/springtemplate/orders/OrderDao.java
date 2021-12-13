@@ -71,7 +71,7 @@ public class OrderDao {
             @PathVariable("orderId") Integer id,
             @RequestBody Order orderUpdates) {
         Order order = orderRepository.findById(id).get();
-        order.setCustomerId(orderUpdates.getCustomerId());
+        order.setUserId(orderUpdates.getUserId());
         return orderRepository.save(order);
     }
 

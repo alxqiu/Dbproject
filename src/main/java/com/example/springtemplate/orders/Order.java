@@ -14,7 +14,7 @@ public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  private Integer customerId;
+  private Integer userId;
 
   @ManyToOne
 //  @JsonIgnore
@@ -39,16 +39,16 @@ public class Order {
     this.id = id;
   }
 
-  public Integer getCustomerId() {
-    return customerId;
+  public Integer getUserId() {
+    return userId;
   }
 
-  public void setCustomerId(Integer customerId) {
-    this.customerId = customerId;
+  public void setUserId(Integer customerId) {
+    this.userId = customerId;
   }
 
   public Order(Integer customerId) {
-    this.customerId = customerId;
+    this.userId = customerId;
   }
 
   public Order() {}

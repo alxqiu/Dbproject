@@ -59,11 +59,11 @@ const OrderFormEditor = () => {
                              ({...order, id: e.target.value}))}
                    value={order.id}/><br/>
 
-            <label>Customer ID</label>
+            <label>User ID</label>
             <select onChange={(e) =>
                 setOrder(order =>
-                             ({...order, customerId: e.target.value}))}
-                    value={order.customerId}>
+                             ({...order, userId: e.target.value}))}
+                    value={order.userId}>
                 {
                     users.map((user) => <option key={user.id} value={user.id}> {user.id}</option>)
                 }
@@ -88,7 +88,7 @@ const OrderFormEditor = () => {
                 Save
             </button>
             <button className="btn btn-secondary"
-                    onClick={() => getOrderUser(order.customerId)}>
+                    onClick={() => getOrderUser(order.userId)}>
                 User
             </button>
             <br/>
