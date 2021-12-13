@@ -17,7 +17,7 @@ public class Product {
   private Double price;
   private Integer quantity;
 
-  @OneToMany(mappedBy = "productType")
+  @OneToMany(mappedBy = "productId")
   @JsonIgnore
   private List<ProductOrder> productOrders;
 

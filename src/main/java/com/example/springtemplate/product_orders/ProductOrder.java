@@ -2,8 +2,10 @@ package com.example.springtemplate.product_orders;
 
 import com.example.springtemplate.orders.Order;
 import com.example.springtemplate.products.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "product_orders")
@@ -14,6 +16,11 @@ public class ProductOrder {
   private Integer quantity;
   private Integer orderId;
   private Integer productId;
+
+  @OneToMany(mappedBy = "productId")
+  @JsonIgnore
+  private List<ProductOrder> productOrders;
+
 
   @ManyToOne
   private Order containedIn;

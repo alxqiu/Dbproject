@@ -20,7 +20,7 @@ public class Order {
 //  @JsonIgnore
   private User orderedBy;
 
-  @OneToMany(mappedBy = "containedIn")
+  @OneToMany(mappedBy = "orderId")
   @JsonIgnore
   private List<ProductOrder> productOrders;
 
