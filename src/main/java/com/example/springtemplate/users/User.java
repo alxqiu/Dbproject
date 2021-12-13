@@ -26,7 +26,7 @@ public class User {
 //    @Transient
 //    private String[] possibleRoles = new String[] {"customer", "employee", "manager"};
 
-    @OneToMany(mappedBy = "orderedBy")
+    @OneToMany(mappedBy = "userId")
     @JsonIgnore
     private List<Order> orders;
 
