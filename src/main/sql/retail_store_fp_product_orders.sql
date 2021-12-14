@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `retail_store_fp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `retail_store_fp`;
+-- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
 --
--- Host: 127.0.0.1    Database: retail_store_fp
+-- Host: localhost    Database: retail_store_fp
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,7 +36,7 @@ CREATE TABLE `product_orders` (
   KEY `product_orders_to_product_idx` (`product_id`),
   CONSTRAINT `product_orders_to_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_orders_to_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +45,7 @@ CREATE TABLE `product_orders` (
 
 LOCK TABLES `product_orders` WRITE;
 /*!40000 ALTER TABLE `product_orders` DISABLE KEYS */;
-INSERT INTO `product_orders` VALUES (2,508,4,3,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(4,7,4,1,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(5,10,3,4,'2021-11-25 22:49:13','2021-11-25 22:49:13');
+INSERT INTO `product_orders` VALUES (1,3,1,1,'2021-11-25 22:49:13','2021-12-13 19:06:47'),(2,10,2,2,'2021-11-25 22:49:13','2021-12-13 19:06:47'),(3,5,1,4,'2021-11-25 22:49:13','2021-12-13 19:06:47'),(4,1,4,3,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(5,32,5,8,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(6,3,8,5,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(7,18,6,7,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(8,3,7,6,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(9,90,9,9,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(10,2,1,7,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(11,5,1,6,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(12,8,2,3,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(13,3,4,9,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(14,2,7,5,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(15,6,9,2,'2021-12-13 19:06:47','2021-12-13 19:06:47'),(16,2,3,8,'2021-12-13 19:08:17','2021-12-13 19:08:17'),(17,3,10,3,'2021-12-13 19:14:18','2021-12-13 19:14:18');
 /*!40000 ALTER TABLE `product_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-13 18:36:38
+-- Dump completed on 2021-12-13 19:17:33

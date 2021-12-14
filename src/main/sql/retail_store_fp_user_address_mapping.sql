@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `retail_store_fp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `retail_store_fp`;
+-- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
 --
--- Host: 127.0.0.1    Database: retail_store_fp
+-- Host: localhost    Database: retail_store_fp
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,7 +42,7 @@ CREATE TABLE `user_address_mapping` (
 
 LOCK TABLES `user_address_mapping` WRITE;
 /*!40000 ALTER TABLE `user_address_mapping` DISABLE KEYS */;
-INSERT INTO `user_address_mapping` VALUES (2,4,1),(4,2,3),(5,2,5);
+INSERT INTO `user_address_mapping` VALUES (2,2,1),(4,1,3),(5,1,5);
 /*!40000 ALTER TABLE `user_address_mapping` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-13 18:36:38
+-- Dump completed on 2021-12-13 19:17:32

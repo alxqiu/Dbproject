@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `retail_store_fp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `retail_store_fp`;
+-- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
 --
--- Host: 127.0.0.1    Database: retail_store_fp
+-- Host: localhost    Database: retail_store_fp
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +32,7 @@ CREATE TABLE `products` (
   `created` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +41,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'chair',40.00,3,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(2,'desk',100.00,50,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(3,'watermelon',6.99,100,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(4,'orange',0.80,10,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(5,'mixtape',20.00,32,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(6,'basket',4.75,100,'2021-12-02 13:50:24','2021-12-02 14:17:23'),(8,'couch',250.00,10,'2021-12-12 21:39:07','2021-12-12 21:39:07');
+INSERT INTO `products` VALUES (1,'chair',40.00,3,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(2,'desk',100.00,50,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(3,'watermelon',6.99,100,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(4,'orange',0.80,10,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(5,'mixtape',20.00,32,'2021-11-25 22:49:13','2021-11-25 22:49:13'),(6,'basket',4.75,100,'2021-12-02 13:50:24','2021-12-02 14:17:23'),(7,'couch',250.00,10,'2021-12-12 21:39:07','2021-12-13 19:03:46'),(8,'mango',0.50,500,'2021-12-13 19:03:46','2021-12-13 19:03:46'),(9,'macbook',1300.00,15,'2021-12-13 19:03:46','2021-12-13 19:03:46');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-13 18:36:38
+-- Dump completed on 2021-12-13 19:17:33
