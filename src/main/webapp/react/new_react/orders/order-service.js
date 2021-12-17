@@ -1,6 +1,5 @@
 // declare URL where server listens for HTTP requests
 const ORDERS_URL = "http://localhost:8080/orm/orders"
-const USERS_URL = "http://localhost:8080/orm/users"
 
 // retrieve all orders from the server
 export const findAllOrders = () => {
@@ -13,10 +12,7 @@ export const findOrderById = (id) => {
     return fetch(`${ORDERS_URL}/find/${id}`)
         .then(response => response.json())
 }
-// // find order(s) by a given user
-// export const findOrdersByUser = (userId) => {
-//     return fetch(`${USERS_URL}/${userId}/orders`)
-//         .then(response => response.json())
+
 
 // delete an order by its ID
     export const deleteOrder = (id) => {
@@ -51,14 +47,20 @@ export const findAllProductsById = (id) => {
         .then(response => response.json())
 }
 
+// retrieve all product orders a single order by their ID
+export const findAllProductOrdersById = (id) => {
+    return fetch(`${ORDERS_URL}/find/product_orders/${id}`)
+        .then(response => response.json())
+}
+
 
 // export all functions as the API to this service
     export default {
         findAllOrders,
         findOrderById,
-        // findOrdersByUser,
         deleteOrder,
         createOrder,
         updateOrder,
-        findAllProductsById
+        findAllProductsById,
+        findAllProductOrdersById
 }

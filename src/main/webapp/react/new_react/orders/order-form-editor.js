@@ -1,5 +1,5 @@
 import orderService from "./order-service"
-import userService from "./users/user-service"
+import userService from "../users/user-service"
 
 const {useState, useEffect} = React;
 const {useParams, useHistory} = window.ReactRouterDOM;
@@ -13,7 +13,6 @@ const OrderFormEditor = () => {
             findOrderById(id)
         }
     }, []);
-
     const findOrderById = (id) =>
         orderService.findOrderById(id).then(order => setOrder(order))
 
@@ -37,10 +36,19 @@ const OrderFormEditor = () => {
         orderService.findAllProductsById(id)
             .then(products => setProducts(products))
 
+    //for accessing product orders of an order
+    const [productOrders, setProductOrders] = useState([])
+    useEffect(() => {
+        if (id !== "new") {
+            findAllProductOrders(id)
+        }
+    }, [])
+    const findAllProductOrders = (id) =>
+        orderService.findAllProductOrdersById(id)
+            .then(productOrders => setProductOrders(productOrders))
+
     const getOrderUser = (id) =>
         userService.findUserById(id).then(() => reactRouterHistory.push(`/users/find/${id}`))
-    // const processUsers = async () =>
-    //     JSON.parse(await userService.findAllUsers())
     const deleteOrder = (id) =>
         orderService.deleteOrder(id)
             .then(() => history.back())
@@ -117,6 +125,33 @@ const OrderFormEditor = () => {
                 }
             </ul>
 
+            <button className="btn btn-primary"
+                    onClick={() => reactRouterHistory.push("/product_orders/find/id/new")}>
+                Add Product Order
+            </button>
+
+            <ul className="list-group">
+                All Product Orders
+                {
+                    productOrders.map(productOrder =>
+                        <li className="list-group-item"
+                            key={productOrder.id}>
+
+                            <text>
+                                {"Product Order ID: " + productOrder.id + " "}
+                                {" Product ID: "}{productOrder.productId}
+                                {", Quantity: "}{productOrder.quantity}
+                                {" "}
+                            </text>
+
+                            <button className="btn btn-secondary"
+                                    onClick={() => reactRouterHistory.push(
+                                        `/product_orders/find/id/${productOrder.id}`)}>
+                                Edit Product Order
+                            </button>
+                        </li>)
+                }
+            </ul>
         </div>
     )
 }

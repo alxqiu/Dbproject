@@ -65,7 +65,13 @@ public class OrderDao {
         for (ProductOrder po : productOrders) {
             products.add(productRepository.findById(po.getProductId()).get());
         }
-        System.out.println(products);
+        // System.out.println(products);
         return products;
+    }
+
+    @GetMapping("/orm/orders/find/product_orders/{orderId}")
+    public List<ProductOrder> findProductOrdersById(
+            @PathVariable("orderId") Integer orderId) {
+        return orderRepository.findById(orderId).get().getProductOrders();
     }
 }

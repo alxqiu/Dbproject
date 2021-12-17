@@ -4,6 +4,7 @@ import OrderList from "./orders/order-list";
 import OrderFormEditor from "./orders/order-form-editor";
 import ProductList from "./products/product-list";
 import ProductFormEditor from "./products/product-form-editor";
+import ProductOrderFormEditor from "./product_orders/product-order-form-editor";
 
 const {HashRouter, Route} = window.ReactRouterDOM;
 const App = () => {
@@ -27,6 +28,9 @@ const App = () => {
                     <Route path="/orders/find/:id" exact={true}>
                         <OrderFormEditor/>
                     </Route>
+                    <Route path="/product_orders/find/id/:id" exact={true}>
+                        <ProductOrderFormEditor/>
+                    </Route>
                 </HashRouter>
             </div>
 
@@ -39,9 +43,7 @@ const App = () => {
                         <ProductFormEditor/>
                     </Route>
                 </HashRouter>
-
             </div>
-
         </div>
     );
 }
