@@ -63,4 +63,10 @@ public class ProductDao {
         }
         return orders;
     }
+
+    @GetMapping("/orm/products/find/product_orders/{productId}")
+    public List<ProductOrder> findProductOrdersById(
+            @PathVariable("productId") Integer productId) {
+        return productRepository.findById(productId).get().getProductOrders();
+    }
 }
