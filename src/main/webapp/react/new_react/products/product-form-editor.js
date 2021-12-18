@@ -66,7 +66,6 @@ const ProductFormEditor = () => {
                 setProduct(product =>
                     ({...product, quantity: e.target.value}))}
                    value={product.quantity}/><br/>
-            <label>Password</label>
 
             <button className="btn btn-dark"
                     onClick={() => {
